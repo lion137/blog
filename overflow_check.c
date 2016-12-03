@@ -85,10 +85,8 @@ int main(){
 	while (i < 1000000000){
 		i++;
 		if (unsigned_long_overflow(i, i+1))// when compiled with optimization enabled (gcc -O1 -std=c99 overflow_check.c -lgmp)
-            outcome = i * (i + 1);         // no difference when line 88 commented or not:
-                                           // time ./a.out -> 0.388 / 0.362
-			
-	
+            outcome = i * (i + 1);                // no difference when line 88 commented or not:
+                                                 // time ./a.out -> 0.388 / 0.362
 	}
 	return 0;
 }
