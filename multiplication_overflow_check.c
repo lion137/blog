@@ -70,10 +70,20 @@ int unsigned_long_overflow_bigint(unsigned long x, unsigned long y){
 	  * version , slow.
 	  * 
 	 */
-	mpz_t test;
-	mpz_init(test);
-	mpz_set_ui(test, x * y);
-	if(mpz_cmp_ui(test, ULONG_MAX) <= 0) return 1;
+	int unsigned_long_overflow_bigint(unsigned long int x, unsigned long int  y){
+	/*
+	  Returns 1 if multiplication of  two unsigned 64 bit integers not overflow, zero otherwise. Bigint testing 
+	  * version , slow.
+	  * 
+	 */
+	mpz_t op1, op2, mul_res;
+	mpz_init(mul_res);
+	mpz_init(op1);
+	mpz_init(op2);
+	mpz_set_ui(op1, x);
+	mpz_set_ui(op2, y);
+	mpz_mul(mul_res, op1, op2);
+	if(mpz_cmp_ui(mul_res, ULONG_MAX) <= 0) return 1;
 	else return 0;
 	
 }
