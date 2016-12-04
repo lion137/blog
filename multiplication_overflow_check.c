@@ -99,4 +99,18 @@ int main(){
                                                  // time ./a.out -> 0.388 / 0.362
 	}
 	return 0;
+	/*
+	One of the tests: 
+	unsigned long i = ULONG_MAX / 2;
+	unsigned long k = ULONG_MAX;
+	while (i < ULONG_MAX / 2 + 10000000){
+		
+		if (unsigned_long_overflow(i, k) != unsigned_long_overflow_bigint(i, k)) {printf("%lu, %lu\n ", i, k); break;}
+		
+		i++;
+		k--;
+			
+	
+	}
+	*/
 }
