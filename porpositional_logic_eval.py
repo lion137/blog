@@ -1,7 +1,7 @@
 import operator as op
 
 
-class BinaryTree:
+class BinaryTree: 
     def __init__(self, rootObj):
         self.key = rootObj
         self.parent = None
