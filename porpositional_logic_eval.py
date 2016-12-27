@@ -80,7 +80,6 @@ def build_parse_tree(exp):
     exp_list = exp.replace('(', ' ( ').replace(')', ' ) ').replace('~', ' ~ ').split()
     e_tree = BinaryTree('')
     current_tree = e_tree
-    cnt = 0
     for token in exp_list:
         if token == '(':
             current_tree.insertLeft('')
@@ -107,7 +106,6 @@ def build_parse_tree(exp):
             current_tree = current_tree.getParent()
         else:
             raise ValueError
-        cnt += 1
     return e_tree
 
 
