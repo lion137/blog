@@ -71,10 +71,9 @@ def inorder_traversal(tree):
         inorder_traversal(tree.getLeftChild())
         print(tree.getRootVal())
         inorder_traversal(tree.getRightChild())
-
-
+        
 implication = lambda x, y: op.or_(op.not_(x), y)
-
+equality = lambda x ,y: op.and_(implication(x, y), implication(y, x))
 
 def build_parse_tree(exp):
     exp_list = exp.replace('(', ' ( ').replace(')', ' ) ').replace('~', ' ~ ').split()
@@ -82,9 +81,9 @@ def build_parse_tree(exp):
     current_tree = e_tree
     for token in exp_list:
         if token == '(':
-            current_tree.insertLeft('')
-            current_tree = current_tree.getLeftChild()
-        elif token in ['||', '&&', '->']:
+                current_tree.insertLeft('')
+                current_tree = current_tree.getLeftChild()
+        elif token in ['||','&&', '->', '==']:
             if current_tree.getRootVal() == '~':
                 current_tree.getParent().setRootVal(token)
                 current_tree.insertRight('')
@@ -108,9 +107,8 @@ def build_parse_tree(exp):
             raise ValueError
     return e_tree
 
-
 def evaluate_parse_tree(tree):
-    opers = {'||': op.or_, '&&': op.and_, '~': op.not_, '->': implication}
+    opers = {'||': op.or_, '&&': op.and_, '~': op.not_, '->': implication, '==': equality} 
     leftT = tree.getLeftChild()
     rightT = tree.getRightChild()
     if leftT and not rightT:
