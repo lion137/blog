@@ -1,4 +1,8 @@
+import string
+import re
 import operator as op
+import functools
+from itertools import product
 
 
 class BinaryTree: 
@@ -119,3 +123,16 @@ def evaluate_parse_tree(tree):
         return fn(evaluate_parse_tree(leftT), evaluate_parse_tree(rightT))
     else:
         return tree.getRootVal()
+
+def fill_values(formula):
+    """returns genexp with the all fillings with 0 and 1"""
+    letters = ''.join(set(re.findall('[A-Z]', formula)))
+    for digits in product('10', repeat=len(letters)):
+         table = str.maketrans(letters, ''.join(digits))
+         yield formula.translate(table)
+        
+def is_tautology(formula):
+    for x in fill_values(formula):
+        if not evaluate_parse_tree(build_parse_tree(x)):
+            return False
+    return True
