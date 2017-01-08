@@ -25,8 +25,8 @@ def m_g_d(A, y, alfa):
     """computes gradient descent"""
     l = len(A)
     X = np.c_[np.ones(l), A]
-    tmp = np.matrix([0, 0, 0], dtype=np.float64)
-    theta = np.matrix([0, 0, 0], dtype=np.float64)
+    tmp = np.matrix([0] * X.shape[1], dtype=np.float64)
+    theta = np.matrix([0] * X.shape[1], dtype=np.float64)
     cnt = 0
     m = len(X)
     ma = alfa * (1 / m)
